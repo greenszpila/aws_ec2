@@ -1,27 +1,42 @@
-# aws_ec2
 
-- Get the default user name for the AMI that you used to launch your instance:
-- For Amazon Linux 2 or the Amazon Linux AMI, the user name is ec2-user.
-- For a CentOS AMI, the user name is centos or ec2-user.
-- For a Debian AMI, the user name is admin.
-- For a Fedora AMI, the user name is fedora or ec2-user.
-- For a RHEL AMI, the user name is ec2-user or root.
-- For a SUSE AMI, the user name is ec2-user or root.
-- For an Ubuntu AMI, the user name is ubuntu.
-- For an Oracle AMI, the user name is ec2-user.
-- For a Bitnami AMI, the user name is bitnami.
 
-# Ubuntu 18.04 ubuntu@
-terraform apply 
+# terraform-aws-ec2-instance 
 
-# Amzn Linux ec2user@
-terraform apply -var-file amzn.tfvars 
+Simple repo that you can use to spin up EC2 Instance in US-East-2 location
 
-# RHEL  ec2user@
-terraform apply -var-file rhel.tfvars 
+### Dependencies
 
-# Debian 10
-terraform apply -var-file deb.tfvars
+* terraform
+* aws account and aws cli installed 
 
-# Suse11
-terraform apply -var-file suse11.tfvars
+### Installing
+
+* git pull repository:  `https://github.com/greenszpila/aws_ec2.git`
+
+### Executing program
+
+### To spin up simple EC2 Ubuntu 18.04 
+`terraform apply `
+
+### Amzn Linux 
+`terraform apply -var-file amzn.tfvars `
+
+### RHEL  
+`terraform apply -var-file rhel.tfvars `
+
+### Debian 10
+`terraform apply -var-file deb.tfvars`
+
+### Suse11
+`terraform apply -var-file suse11.tfvars`
+
+Get the default user name for the AMI that you used to launch your instance:
+For Amazon Linux 2 or the Amazon Linux AMI, the user name is ec2-user.
+For a CentOS AMI, the user name is centos or ec2-user.
+For a Debian AMI, the user name is admin.
+For a Fedora AMI, the user name is fedora or ec2-user.
+For a RHEL AMI, the user name is ec2-user or root.
+For a SUSE AMI, the user name is ec2-user or root.
+For an Ubuntu AMI, the user name is ubuntu.
+For an Oracle AMI, the user name is ec2-user.
+For a Bitnami AMI, the user name is bitnami.
