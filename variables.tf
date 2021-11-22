@@ -12,7 +12,7 @@ variable "ami_key_pair_name" {
   default = "kriss"
 }
 variable "security_group_name" {
-  default = "allow_ssh_ubuntu"
+  default = "allow_ssh_ubuntu18"
 
 }
 variable "instance_name" {

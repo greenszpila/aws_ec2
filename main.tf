@@ -3,9 +3,12 @@ provider "aws" {
   region  = "us-east-2"
 }
 
+resource "random_pet" "security-group" {}
+
 
 resource "aws_security_group" "allow-ssh-http" {
-  name        = var.security_group_name
+  name = "${random_pet.security-group.id}-allow"
+  #name        = var.security_group_name
   description = "Allow HTTP, HTTPS and SSH traffic"
 
   ingress {

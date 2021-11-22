@@ -24,11 +24,18 @@ Simple repo that you can use to spin up EC2 Instance in US-East-2 location
 ### RHEL  
 `terraform apply -var-file rhel.tfvars `
 
+### CentOS
+`terraform apply -var-file centos.tfvars`
+
 ### Debian 10
 `terraform apply -var-file deb.tfvars`
 
 ### Suse11
 `terraform apply -var-file suse11.tfvars`
+
+### Ubuntu20
+`terraform apply -var-file ubuntu20.tfvars`
+
 
 Get the default user name for the AMI that you used to launch your instance:
 For Amazon Linux 2 or the Amazon Linux AMI, the user name is ec2-user.
