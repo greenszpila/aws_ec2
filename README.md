@@ -10,8 +10,9 @@ to match your aws region and aws ssh key.
 
 ### Dependencies
 
-* [terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli){:target="_blank"}
-* aws account and [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html){:target="_blank"}
+* <a href="https://learn.hashicorp.com/tutorials/terraform/install-cli" target="_blank">Terraform</a>
+* AWS Account and <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html" target="_blank">AWS CLI</a>
+
 
 ### Installing
 
@@ -46,15 +47,3 @@ to match your aws region and aws ssh key.
 
 ### Ubuntu20
 `terraform apply -var-file ubuntu20.tfvars`
-
-
-The output command will generate the ssh connect command including the default user or the AMI that you used to launch your instance, key name and the IP. For your reference:
-For Amazon Linux 2 or the Amazon Linux AMI, the user name is ec2-user.
-For a CentOS AMI, the user name is centos or ec2-user.
-For a Debian AMI, the user name is admin.
-For a Fedora AMI, the user name is fedora or ec2-user.
-For a RHEL AMI, the user name is ec2-user or root.
-For a SUSE AMI, the user name is ec2-user or root.
-For an Ubuntu AMI, the user name is ubuntu.
-For an Oracle AMI, the user name is ec2-user.
-For a Bitnami AMI, the user name is bitnami.
