@@ -29,17 +29,19 @@ Initialize terraform:
 * `terraform init` 
 
 ### To spin up simple EC2 Ubuntu 18.04 
-`terraform apply `  
+`terraform apply` 
 
-`terraform destroy`   #to destroy the instance after testing.
+# to destroy the instance after testing
+`terraform destroy`
 
 ### Amzn Linux 
-`terraform apply -var-file amzn.tfvars `  
+`terraform apply -var-file amzn.tfvars`
 
-`terraform destroy -var-file amzn.tfvars `  #to destroy it.
+# to destroy it 
+`terraform destroy -var-file amzn.tfvars`
 
 ### RHEL 7
-`terraform apply -var-file rhel.tfvars `
+`terraform apply -var-file rhel.tfvars`
 
 ### CentOS 7
 `terraform apply -var-file centos.tfvars`
