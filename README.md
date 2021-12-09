@@ -2,15 +2,16 @@
 
 # terraform-aws-ec2-instance 
 
-A simple repository that allows you to spin up EC2 Linux instance in any region.
+A simple repository that allows you to spin up by default Ubuntu ec2 instance in any region.
+Many other Linux distros are available by referring to the matching `tfvars` file.
 
 Please modify the `aws region` and `ami_key_pair_name` in the `variables.tf` file
 to match your aws region and aws ssh key.
 
 ### Dependencies
 
-* terraform
-* aws account and aws cli installed 
+* terraform: https://learn.hashicorp.com/tutorials/terraform/install-cli 
+* aws account and aws cli installed: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
 ### Installing
 
