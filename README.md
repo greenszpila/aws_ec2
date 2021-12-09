@@ -2,7 +2,10 @@
 
 # terraform-aws-ec2-instance 
 
-Simple repo that you can use to spin up EC2 Instance in US-East-2 location
+A simple repository that allows you to spin up EC2 Linux instance in any region.
+
+Please modify the `aws region` and `ami_key_pair_name` in the `variables.tf` file
+to match your aws region and aws ssh key.
 
 ### Dependencies
 
@@ -17,9 +20,11 @@ Simple repo that you can use to spin up EC2 Instance in US-East-2 location
 
 ### To spin up simple EC2 Ubuntu 18.04 
 `terraform apply `
+`terraform destroy` to destroy the instance after testing.
 
 ### Amzn Linux 
 `terraform apply -var-file amzn.tfvars `
+`terraform destroy -var-file amzn.tfvars ` to destroy it.
 
 ### RHEL 7
 `terraform apply -var-file rhel.tfvars `
@@ -30,14 +35,17 @@ Simple repo that you can use to spin up EC2 Instance in US-East-2 location
 ### Debian 10
 `terraform apply -var-file deb.tfvars`
 
-### Suse11
+### Suse12 SP5
 `terraform apply -var-file suse12.tfvars`
+
+### Suse15 SP1
+`terraform apply -var-file suse15.tfvars`
 
 ### Ubuntu20
 `terraform apply -var-file ubuntu20.tfvars`
 
 
-Get the default user name for the AMI that you used to launch your instance:
+The output command will generate the ssh connect command including the default user or the AMI that you used to launch your instance, key name and the IP. For your reference:
 For Amazon Linux 2 or the Amazon Linux AMI, the user name is ec2-user.
 For a CentOS AMI, the user name is centos or ec2-user.
 For a Debian AMI, the user name is admin.

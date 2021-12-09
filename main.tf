@@ -56,7 +56,11 @@ locals {
         "centos7":   {owner: "aws-marketplace",       filter: "CentOS Linux 7*"},
         "rhel7":   {owner: "309956199498",       filter: "RHEL-7.*"},
         "ubuntu18": {owner: "099720109477", filter: "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"},
+        "ubuntu20": {owner: "099720109477", filter: "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"},
         "debian10": {owner: "136693071363", filter: "debian-10*"},
+        "suse12": {owner: "013907871322", filter: "suse-sles-12-sp5-v*-hvm-ssd-x86_64"},
+        "suse15": {owner: "013907871322", filter: "suse-sles-15-sp1-v*-hvm-ssd-x86_64"},
+
     }
 }
 // Get latest Amzn Linux AMI
@@ -84,7 +88,7 @@ data "aws_ami" "ubuntu18" {
     values = ["hvm"]
   }
 }
-// Get latest Cemn OS Linux AMI
+// Get latest Cent OS Linux AMI
 
 data "aws_ami" "centos7" {
   most_recent = true
@@ -127,6 +131,47 @@ data "aws_ami" "debian10" {
   }
 }
 
+# Get latest SUSE Linux Enterprise Server 12 SP5 AMI
+data "aws_ami" "suse12" {
+  most_recent = true
+  owners      = ["013907871322"] # Amazon
+  filter {
+    name   = "name"
+    values = ["suse-sles-12-sp5-v*-hvm-ssd-x86_64"]
+  }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+
+# Get latest SUSE Linux Enterprise Server 15 SP1 AMI
+data "aws_ami" "suse15" {
+  most_recent = true
+  owners      = ["013907871322"] # Amazon
+  filter {
+    name   = "name"
+    values = ["suse-sles-15-sp1-v*-hvm-ssd-x86_64"]
+  }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+
+data "aws_ami" "ubuntu20" {
+    most_recent = true
+    filter {
+        name   = "name"
+        values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    }
+    filter {
+        name = "virtualization-type"
+        values = ["hvm"]
+    }
+    owners = ["099720109477"]
+}
+
 
 // use a for_each in the aws_ami, that will give us an array, 
 // we can consume that later in the aws_instance resource
@@ -149,7 +194,7 @@ data "aws_ami" "os" {
 resource "aws_instance" "linux" {
   key_name      = var.ami_key_pair_name
   ami           = data.aws_ami.os[var.ami_name].id
-  instance_type = "t2.micro"
+  instance_type = var.instance_size 
 
   tags = {
     Name = var.instance_name
