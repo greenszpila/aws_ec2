@@ -1,10 +1,11 @@
 provider "aws" {
   profile = "default"
-  region  = "us-east-2"
+  region  = var.aws_region
 }
 
-resource "random_pet" "security-group" {}
+// security group random name creation and rules
 
+resource "random_pet" "security-group" {}
 
 resource "aws_security_group" "allow-ssh-http" {
   name = "${random_pet.security-group.id}-allow"
@@ -47,10 +48,107 @@ resource "aws_security_group" "allow-ssh-http" {
   }
 }
 
+// list of os ami 
+
+locals {
+    allowed_os = {
+        "amazon": {owner: "amazon",       filter: "amzn2-ami-hvm*"},
+        "centos7":   {owner: "aws-marketplace",       filter: "CentOS Linux 7*"},
+        "rhel7":   {owner: "309956199498",       filter: "RHEL-7.*"},
+        "ubuntu18": {owner: "099720109477", filter: "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"},
+        "debian10": {owner: "136693071363", filter: "debian-10*"},
+    }
+}
+// Get latest Amzn Linux AMI
+
+data "aws_ami" "amazon" {
+  most_recent = true
+  owners      = ["amazon"]
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm*"]
+  }
+}
+
+// Get latest Ubuntu AMI
+
+data "aws_ami" "ubuntu18" {
+  most_recent = true
+  owners      = ["099720109477"] # Canonical
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
+  }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+// Get latest Cemn OS Linux AMI
+
+data "aws_ami" "centos7" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["CentOS Linux 7*"]
+  }
+
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+
+  filter {
+    name   = "state"
+    values = ["available"]
+  }
+
+  owners = ["aws-marketplace"]
+}
+
+# Get latest Red Hat Enterprise Linux 7.x AMI
+data "aws_ami" "rhel7" {
+  most_recent = true
+  owners      = ["309956199498"]
+  filter {
+    name   = "name"
+    values = ["RHEL-7.*"]
+  }
+}
+
+# Get latest Debian Linux 10 AMI
+data "aws_ami" "debian10" {
+  most_recent = true
+  owners      = ["136693071363"]
+  filter {
+    name   = "name"
+    values = ["debian-10*"]
+  }
+}
+
+
+// use a for_each in the aws_ami, that will give us an array, 
+// we can consume that later in the aws_instance resource
+
+data "aws_ami" "os" {
+  for_each = local.allowed_os
+
+  most_recent = true
+  owners      = [each.value.owner]
+  filter {
+    name   = "name"
+    values = [each.value.filter]
+  }
+}
+
+// deploy resource with ami provided byt user or config file 
+// this way we can deploy ec2 instance with latest version of choses OS  in any region 
+// without refering the exact ami id e.g. "ami-0b9064170e32bde34" is different for ubuntu in eu or us.
 
 resource "aws_instance" "linux" {
   key_name      = var.ami_key_pair_name
-  ami           = var.ami_id
+  ami           = data.aws_ami.os[var.ami_name].id
   instance_type = "t2.micro"
 
   tags = {

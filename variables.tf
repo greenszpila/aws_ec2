@@ -1,20 +1,18 @@
 //variables.tf
-variable "ami_id" {
-  // ubuntu 18.04 in us-east-2 8gb all defaults
-  //ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-20210415
-  default = "ami-0b9064170e32bde34"
-}
+
+// please modify region and key_pair_name accordingly 
+
+#variable "aws_region" { default = "us-east-2" } # Ohio
+variable "aws_region" { default = "eu-west-1" } # Dublin
+
+#variable "ami_key_pair_name" { default = "kriss" }
+variable "ami_key_pair_name" { default = "kriss-eu" }
+
 
 variable "ami_name" {
-  default = "krs-ubuntu18"
+  default = "ubuntu18"
 }
-variable "ami_key_pair_name" {
-  default = "kriss"
-}
-variable "security_group_name" {
-  default = "allow_ssh_ubuntu18"
 
-}
 variable "instance_name" {
   default = "krs-tf-ubuntu18"
 }
