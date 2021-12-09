@@ -10,8 +10,8 @@ to match your aws region and aws ssh key.
 
 ### Dependencies
 
-* terraform: https://learn.hashicorp.com/tutorials/terraform/install-cli 
-* aws account and aws cli installed: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+* [terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli){:target="_blank"}
+* aws account and [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html){:target="_blank"}
 
 ### Installing
 
@@ -20,12 +20,14 @@ to match your aws region and aws ssh key.
 ### Executing program
 
 ### To spin up simple EC2 Ubuntu 18.04 
-`terraform apply `
-`terraform destroy` to destroy the instance after testing.
+`terraform apply `  
+
+`terraform destroy`   #to destroy the instance after testing.
 
 ### Amzn Linux 
-`terraform apply -var-file amzn.tfvars `
-`terraform destroy -var-file amzn.tfvars ` to destroy it.
+`terraform apply -var-file amzn.tfvars `  
+
+`terraform destroy -var-file amzn.tfvars `  #to destroy it.
 
 ### RHEL 7
 `terraform apply -var-file rhel.tfvars `
