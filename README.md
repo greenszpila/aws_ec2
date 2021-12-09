@@ -12,13 +12,18 @@ to match your aws region and aws ssh key.
 
 * <a href="https://learn.hashicorp.com/tutorials/terraform/install-cli" target="_blank">Terraform</a>
 * AWS Account and <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html" target="_blank">AWS CLI</a>
-
+  
 
 ### Installing
 
-* git pull repository:  `https://github.com/greenszpila/aws_ec2.git`
-
-### Executing program
+Clone repository:  
+* `git clone https://github.com/greenszpila/aws_ec2.git`
+Change directory:
+* `cd aws_ec2`
+Veryfi the files have been downloaded:
+* `ls -ltr`
+Initialize terraform:
+* `terraform init` 
 
 ### To spin up simple EC2 Ubuntu 18.04 
 `terraform apply `  
