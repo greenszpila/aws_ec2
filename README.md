@@ -18,11 +18,14 @@ to match your aws region and aws ssh key.
 
 Clone repository:  
 * `git clone https://github.com/greenszpila/aws_ec2.git`
-Change directory:
+  
+Change directory:  
 * `cd aws_ec2`
-Veryfi the files have been downloaded:
+  
+Verify the files have been downloaded:  
 * `ls -ltr`
-Initialize terraform:
+  
+Initialize terraform:  
 * `terraform init` 
 
 ### To spin up simple EC2 Ubuntu 18.04 
