@@ -5,6 +5,10 @@
 variable "aws_region" { default = "us-east-2" } # Ohio
 #variable "aws_region" { default = "eu-west-1" } # Dublin
 
+variable "private_key_location" {
+  type = string
+  default = "~/coding/kriss.pem"
+}
 variable "ami_key_pair_name" { default = "kriss" }
 #variable "ami_key_pair_name" { default = "kriss-eu" }
 
