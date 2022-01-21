@@ -13,7 +13,7 @@ output "username" {
 }
 
 output "connect" {
-  value = "ssh -i ${var.private_key_location}.pem ${var.username}@${aws_instance.linux.public_ip}"
+  value = "ssh -i ${var.private_key_location} ${var.username}@${aws_instance.linux.public_ip}"
 }
 
 output "ami_id" {
