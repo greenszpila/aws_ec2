@@ -3,3 +3,4 @@
 ami_name = "ubuntu20"
 instance_name = "krs-tf-ubuntu20"
 username = "ubuntu"
+instance_size = "t2.medium"
