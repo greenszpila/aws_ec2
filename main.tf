@@ -66,7 +66,7 @@ locals {
         "ubuntu20": {owner: "099720109477", filter: "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"},
         "debian10": {owner: "136693071363", filter: "debian-10*"},
         "suse12": {owner: "013907871322", filter: "suse-sles-12-sp5-v*-hvm-ssd-x86_64"},
-        "suse15": {owner: "013907871322", filter: "suse-sles-15-sp1-v*-hvm-ssd-x86_64"},
+        #"suse15": {owner: "013907871322", filter: "suse-sles-15-sp1-v*-hvm-ssd-x86_64"},
 
     }
 }
@@ -151,7 +151,7 @@ data "aws_ami" "suse12" {
     values = ["hvm"]
   }
 }
-
+/*
 # Get latest SUSE Linux Enterprise Server 15 SP1 AMI
 data "aws_ami" "suse15" {
   most_recent = true
@@ -165,7 +165,7 @@ data "aws_ami" "suse15" {
     values = ["hvm"]
   }
 }
-
+*/
 data "aws_ami" "ubuntu20" {
     most_recent = true
     filter {
