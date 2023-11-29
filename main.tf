@@ -60,7 +60,7 @@ resource "aws_security_group" "allow-ssh-http" {
 locals {
     allowed_os = {
         "amazon": {owner: "amazon",       filter: "amzn2-ami-hvm*"},
-        "centos7":   {owner: "aws-marketplace",       filter: "CentOS Linux 7*"},
+        #"centos7":   {owner: "aws-marketplace",       filter: "CentOS Linux 7*"},
         "rhel7":   {owner: "309956199498",       filter: "RHEL-7.*"},
         "ubuntu18": {owner: "099720109477", filter: "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"},
         "ubuntu20": {owner: "099720109477", filter: "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"},
@@ -97,26 +97,26 @@ data "aws_ami" "ubuntu18" {
 }
 // Get latest Cent OS Linux AMI
 
-data "aws_ami" "centos7" {
-  most_recent = true
+# data "aws_ami" "centos7" {
+#   most_recent = true
 
-  filter {
-    name   = "name"
-    values = ["CentOS Linux 7*"]
-  }
+#   filter {
+#     name   = "name"
+#     values = ["CentOS Linux 7*"]
+#   }
 
-  filter {
-    name   = "architecture"
-    values = ["x86_64"]
-  }
+#   filter {
+#     name   = "architecture"
+#     values = ["x86_64"]
+#   }
 
-  filter {
-    name   = "state"
-    values = ["available"]
-  }
+#   filter {
+#     name   = "state"
+#     values = ["available"]
+#   }
 
-  owners = ["aws-marketplace"]
-}
+#   owners = ["aws-marketplace"]
+# }
 
 # Get latest Red Hat Enterprise Linux 7.x AMI
 data "aws_ami" "rhel7" {
